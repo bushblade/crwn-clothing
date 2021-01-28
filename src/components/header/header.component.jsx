@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './header.styles.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
-const Header = () => {
+function Header() {
   return (
     <div className='header'>
       <Link to='/' className='logo-container'>
