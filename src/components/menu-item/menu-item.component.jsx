@@ -4,6 +4,9 @@ import { withRouter } from 'react-router-dom'
 import './menu-item.styles.scss'
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
+  // TODO
+  // remove click handler
+  // replace with <Link /> component
   return (
     <div
       className={`${size} menu-item`}
