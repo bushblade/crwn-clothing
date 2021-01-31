@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import FormInput from '../form-input/form-input.component'
+import './sign-in.styles.scss'
 
 function SignIn() {
   const [formData, setFormData] = useState({
@@ -22,22 +24,22 @@ function SignIn() {
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
-        <input
+        <FormInput
           type='email'
           name='email'
           value={email}
           required
-          onChange={handleChange}
+          handleChange={handleChange}
+          label='email'
         />
-        <label htmlFor='email'>Email</label>
-        <input
+        <FormInput
           type='password'
           name='password'
           value={password}
           required
-          onChange={handleChange}
+          handleChange={handleChange}
+          label='password'
         />
-        <label htmlFor='password'>Password</label>
         <input type='submit' value='Submit Form' />
       </form>
     </div>
