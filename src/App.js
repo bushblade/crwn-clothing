@@ -6,8 +6,11 @@ import HomePage from './pages/homepage/homepage.component'
 import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import SingInAndSignUP from './pages/sign-in&sign-up/sign-in&sign-up'
+import { useGoogleUser } from './firebase/hooks'
 
 function App() {
+  const currentUser = useGoogleUser()
+  console.log(currentUser)
   return (
     <div>
       <Header />
