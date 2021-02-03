@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import './header.styles.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils'
-import { useGoogleUser } from '../../firebase/hooks'
+import { useCurrentUser } from '../../firebase/hooks'
 
 function Header() {
-  const currentUser = useGoogleUser()
+  const currentUser = useCurrentUser()
   return (
     <div className='header'>
       <Link to='/' className='logo-container'>
