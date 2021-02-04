@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import './App.css'
 
@@ -7,16 +7,14 @@ import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import SingInAndSignUP from './pages/sign-in&sign-up/sign-in&sign-up'
 import { useCurrentUser } from './firebase/hooks'
-import { createUserProfileDocument } from './firebase/firebase.utils'
 
 function App() {
   const currentUser = useCurrentUser()
-  useEffect(() => {
-    createUserProfileDocument(currentUser)
-  }, [currentUser])
+  console.log(currentUser)
+
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/shop' component={ShopPage} />
