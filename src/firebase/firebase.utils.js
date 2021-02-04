@@ -23,7 +23,6 @@ export async function checkAndCreateUserProfileDocument(userAuthObject) {
 
   const { displayName, email } = userAuthObject
   if (!snapshot.exists) {
-    console.log('no snapshot .... creating document')
     try {
       await userRef.set({
         displayName,
@@ -33,12 +32,15 @@ export async function checkAndCreateUserProfileDocument(userAuthObject) {
     } catch (err) {
       console.error(err)
     }
-    // check for additionalData - ie. user signed up with email and password
+    // check for no displayName - ie. user signed up with email and password
+    // add the display name from the updated userAuth
   } else if (!snapshot.data().displayName) {
-    console.log('adding a displayName')
-    await userRef.set({
-      displayName,
-    })
+    await userRef.set(
+      {
+        displayName,
+      },
+      { merge: true }
+    )
   }
   return userRef
 }
