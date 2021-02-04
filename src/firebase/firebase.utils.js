@@ -35,12 +35,9 @@ export async function checkAndCreateUserProfileDocument(userAuthObject) {
     // check for no displayName - ie. user signed up with email and password
     // add the display name from the updated userAuth
   } else if (!snapshot.data().displayName) {
-    await userRef.set(
-      {
-        displayName,
-      },
-      { merge: true }
-    )
+    await userRef.update({
+      displayName,
+    })
   }
   return userRef
 }
