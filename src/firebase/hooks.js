@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { auth, createUserProfileDocument } from './firebase.utils'
+import { auth, checkAndCreateUserProfileDocument } from './firebase.utils'
 
 export function useCurrentUser() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -7,7 +7,7 @@ export function useCurrentUser() {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         // add the user to the database if we have a new user
-        createUserProfileDocument(userAuth).then((userRef) => {
+        checkAndCreateUserProfileDocument(userAuth).then((userRef) => {
           // listen for changes in the database
           if (userRef) {
             userRef.onSnapshot((snapShot) => {

@@ -15,27 +15,30 @@ googleProvider.setCustomParameters({ prompt: 'select_account' })
 
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider)
 
-export async function createUserProfileDocument(
-  userAuthObject,
-  additionalData
-) {
+export async function checkAndCreateUserProfileDocument(userAuthObject) {
   if (!userAuthObject) return
   const userRef = firestore.doc(`users/${userAuthObject.uid}`)
 
   const snapshot = await userRef.get()
 
+  const { displayName, email } = userAuthObject
   if (!snapshot.exists) {
-    const { displayName, email } = userAuthObject
+    console.log('no snapshot .... creating document')
     try {
       await userRef.set({
         displayName,
         email,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        ...additionalData,
       })
     } catch (err) {
       console.error(err)
     }
+    // check for additionalData - ie. user signed up with email and password
+  } else if (!snapshot.data().displayName) {
+    console.log('adding a displayName')
+    await userRef.set({
+      displayName,
+    })
   }
   return userRef
 }
