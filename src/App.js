@@ -10,7 +10,6 @@ import { useCurrentUser } from './firebase/hooks'
 
 function App() {
   const currentUser = useCurrentUser()
-  console.log(currentUser)
 
   return (
     <div>
