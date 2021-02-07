@@ -57,6 +57,7 @@ function SignIn() {
             isGoogleSignIn
             value='Submit Form'
             onClick={signInWithGoogle}
+            type='button'
           >
             Sign In With Google
           </CustomButton>
