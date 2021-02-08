@@ -8,7 +8,7 @@ import {
   checkAndCreateUserProfileDocument,
 } from '../../firebase/firebase.utils'
 
-import './sign-up.styles.scss'
+import styled from 'styled-components/macro'
 
 const initialState = {
   displayName: '',
@@ -17,7 +17,7 @@ const initialState = {
   confirmPassword: '',
 }
 
-function SignUp() {
+function SignUp({ className }) {
   const [formData, setFormData] = useState(initialState)
 
   const { displayName, email, password, confirmPassword } = formData
@@ -54,7 +54,7 @@ function SignUp() {
   }
 
   return (
-    <div className='sign-up'>
+    <div className={className}>
       <h2 className='title'>I do not have a account</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={onSubmit} className='sign-up-form'>
@@ -96,4 +96,11 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default styled(SignUp)`
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  .title {
+    margin: 10px 0;
+  }
+`

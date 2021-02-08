@@ -1,15 +1,37 @@
-import React from 'react'
-import './custom-button.styles.scss'
+import styled, { css } from 'styled-components/macro'
 
-function CustomButton({ children, isGoogleSignIn, ...rest }) {
-  return (
-    <button
-      className={`${isGoogleSignIn ? 'google-sign-in' : null} custom-button`}
-      {...rest}
-    >
-      {children}
-    </button>
-  )
-}
+const CustomButton = styled.button`
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+  ${(props) =>
+    props.isGoogleSignIn
+      ? css`
+          background-color: #4285f4;
+          color: white;
+          &:hover {
+            background-color: #357ae8;
+            border: none;
+          }
+        `
+      : null}
+`
 
 export default CustomButton

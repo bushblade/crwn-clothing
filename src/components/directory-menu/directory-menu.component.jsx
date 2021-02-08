@@ -1,6 +1,6 @@
 import React from 'react'
+import styled from 'styled-components/macro'
 
-import './directory-menu.styles.scss'
 import MenuItem from '../../components/menu-item/menu-item.component'
 
 const sections = [
@@ -8,39 +8,39 @@ const sections = [
     title: 'hats',
     imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
     id: 1,
-    linkUrl: 'hats'
+    linkUrl: 'hats',
   },
   {
     title: 'jackets',
     imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
     id: 2,
-    linkUrl: ''
+    linkUrl: '',
   },
   {
     title: 'sneakers',
     imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
     id: 3,
-    linkUrl: ''
+    linkUrl: '',
   },
   {
     title: 'womens',
     imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
     size: 'large',
     id: 4,
-    linkUrl: ''
+    linkUrl: '',
   },
   {
     title: 'mens',
     imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
     size: 'large',
     id: 5,
-    linkUrl: ''
-  }
+    linkUrl: '',
+  },
 ]
 
-const DirectoryMenu = ({ history }) => {
+const DirectoryMenu = ({ className }) => {
   return (
-    <div className='directory-menu'>
+    <div className={className}>
       {sections.map(({ id, ...restSectionProps }) => (
         <MenuItem key={id} {...restSectionProps} />
       ))}
@@ -48,4 +48,9 @@ const DirectoryMenu = ({ history }) => {
   )
 }
 
-export default DirectoryMenu
+export default styled(DirectoryMenu)`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`

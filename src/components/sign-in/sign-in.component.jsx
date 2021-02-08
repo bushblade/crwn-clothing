@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import './sign-in.styles.scss'
 import { signInWithGoogle } from '../../firebase/firebase.utils'
 import { auth } from '../../firebase/firebase.utils'
+import styled from 'styled-components/macro'
 
-function SignIn() {
+function SignIn({ className }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,7 +28,7 @@ function SignIn() {
 
   const { email, password } = formData
   return (
-    <div className='sign-in'>
+    <div className={className}>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
@@ -67,4 +67,15 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default styled(SignIn)`
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  .title {
+    margin: 10px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+`
