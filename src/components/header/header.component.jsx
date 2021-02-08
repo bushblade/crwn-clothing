@@ -5,11 +5,12 @@ import { useSelector } from 'react-redux'
 import './header.styles.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils'
+import CartIcon from '../cart-icon/cart-icon.component'
 
 function Header() {
   const currentUser = useSelector((state) => state.user.currentUser)
   return (
-    <div className='header'>
+    <nav className='header'>
       <Link to='/' className='logo-container'>
         <Logo className='logo' />
       </Link>
@@ -29,8 +30,9 @@ function Header() {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
-    </div>
+    </nav>
   )
 }
 
