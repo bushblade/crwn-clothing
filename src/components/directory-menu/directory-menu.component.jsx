@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components/macro'
 
 import MenuItem from '../../components/menu-item/menu-item.component'

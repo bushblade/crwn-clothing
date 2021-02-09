@@ -7,8 +7,12 @@ import config from './config'
 firebase.initializeApp(config)
 
 export const auth = firebase.auth()
-
 export const firestore = firebase.firestore()
+
+if (process.env.REACT_ENV !== 'production') {
+  auth.useEmulator('http://localhost:9099')
+  firestore.useEmulator('localhost', 8080)
+}
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 googleProvider.setCustomParameters({ prompt: 'select_account' })

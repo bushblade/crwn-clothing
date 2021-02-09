@@ -1,14 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/macro'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cart-icon/cart-icon.component'
-import styled from 'styled-components/macro'
+import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 
 function Header({ className }) {
-  const currentUser = useSelector((state) => state.user.currentUser)
+  const { currentUser, hidden } = useSelector((state) => ({
+    currentUser: state.user.currentUser,
+    hidden: state.cart.hidden,
+  }))
   return (
     <nav className={className}>
       <Link to='/' className='logo-container'>
@@ -32,6 +36,7 @@ function Header({ className }) {
         )}
         <CartIcon />
       </div>
+      {!hidden ? <CartDropdown /> : null}
     </nav>
   )
 }
