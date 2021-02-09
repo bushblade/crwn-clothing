@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/functions'
 
 import config from './config'
 
@@ -8,10 +9,12 @@ firebase.initializeApp(config)
 
 export const auth = firebase.auth()
 export const firestore = firebase.firestore()
+export const functions = firebase.functions()
 
 if (process.env.REACT_ENV !== 'production') {
   auth.useEmulator('http://localhost:9099')
   firestore.useEmulator('localhost', 8080)
+  firebase.functions().useEmulator('localhost', 5001)
 }
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
