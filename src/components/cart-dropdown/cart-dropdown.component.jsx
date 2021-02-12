@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
+import { toggleCartHidden } from '../../redux/cart/cart.actions'
 import CustomButton from '../custom-button/custom-button.component'
 
 function CartDropdown({ className }) {
+  const dropDownRef = useRef(null)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dropDownRef.current.focus()
+  }, [])
   return (
-    <div className={className}>
+    <div
+      className={className}
+      ref={dropDownRef}
+      tabIndex='0'
+      onBlur={() => {
+        dispatch(toggleCartHidden())
+      }}
+    >
       <div className='cart-items'></div>
       <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
