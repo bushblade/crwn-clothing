@@ -15,6 +15,8 @@ const CustomButton = styled.button`
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     background-color: white;
@@ -29,6 +31,31 @@ const CustomButton = styled.button`
           &:hover {
             background-color: #357ae8;
             border: none;
+          }
+        `
+      : null}
+  ${(props) =>
+    props.inverted
+      ? css`
+          background-color: white;
+          color: black;
+          border: 1px solid black;
+          &:hover {
+            background-color: black;
+            color: white;
+            border: none;
+          }
+        `
+      : null}
+  ${(props) =>
+    props.collectionButton
+      ? css`
+          width: 80%;
+          opacity: 0.7;
+          position: absolute;
+          top: 255px;
+          &:hover {
+            opacity: 1;
           }
         `
       : null}
