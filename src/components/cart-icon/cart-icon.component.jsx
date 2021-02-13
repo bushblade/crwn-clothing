@@ -12,6 +12,10 @@ function CartIcon({ className }) {
       onClick={() => {
         dispatch(toggleCartHidden())
       }}
+      onMouseDown={(e) => {
+        // prevent triggering blur
+        e.preventDefault()
+      }}
     >
       <ShoppingIcon className='shopping-icon' />
       <span className='item-count'>0</span>
