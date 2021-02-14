@@ -33,7 +33,6 @@ export default styled(MenuItem)`
 
     & .background-image {
       transform: scale(1.1);
-      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
     & .content {
@@ -58,6 +57,7 @@ export default styled(MenuItem)`
     height: 100%;
     background-size: cover;
     background-position: center;
+    transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
   }
 
   .content {
