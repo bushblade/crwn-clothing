@@ -1,12 +1,15 @@
 import React, { useRef, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
 import CustomButton from '../custom-button/custom-button.component'
+import CartItem from '../cart-item.component'
 
 function CartDropdown({ className }) {
   const dropDownRef = useRef(null)
   const dispatch = useDispatch()
+  const cartItems = useSelector((state) => state.cart.cartItems)
+
   useEffect(() => {
     dropDownRef.current.focus()
   }, [])
@@ -19,7 +22,13 @@ function CartDropdown({ className }) {
         dispatch(toggleCartHidden())
       }}
     >
-      <div className='cart-items'></div>
+      <div className='cart-items'>
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => <CartItem key={item.id} item={item} />)
+        ) : (
+          <span>No items in the cart</span>
+        )}
+      </div>
       <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
   )
@@ -42,7 +51,7 @@ export default styled(CartDropdown)`
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   button {
