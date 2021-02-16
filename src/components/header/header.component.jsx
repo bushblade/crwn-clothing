@@ -8,11 +8,12 @@ import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 
+const userSelector = (state) => state.user.currentUser
+const hiddenSelector = (state) => state.cart.hidden
+
 function Header({ className }) {
-  const { currentUser, hidden } = useSelector((state) => ({
-    currentUser: state.user.currentUser,
-    hidden: state.cart.hidden,
-  }))
+  const currentUser = useSelector(userSelector)
+  const hidden = useSelector(hiddenSelector)
   return (
     <nav className={className}>
       <Link to='/' className='logo-container'>

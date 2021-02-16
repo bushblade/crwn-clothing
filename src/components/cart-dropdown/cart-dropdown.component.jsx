@@ -23,10 +23,10 @@ function CartDropdown({ className }) {
       }}
     >
       <div className='cart-items'>
-        {cartItems.length > 0 ? (
+        {cartItems.length ? (
           cartItems.map((item) => <CartItem key={item.id} item={item} />)
         ) : (
-          <span>No items in the cart</span>
+          <span className='empty-message'>No items in the cart</span>
         )}
       </div>
       <CustomButton>GO TO CHECKOUT</CustomButton>
@@ -51,10 +51,15 @@ export default styled(CartDropdown)`
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   button {
     margin-top: auto;
+  }
+
+  .empty-message {
+    font-size: 18px;
+    margin: 50px auto;
   }
 `
