@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
-import CartItem from '../cart-item.component'
+import CartItem from '../cart-item/cart-item.component'
 import { Link } from 'react-router-dom'
 import { ButtonStyles } from '../custom-button/custom-button.component'
 
