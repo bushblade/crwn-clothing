@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { useSelector, useDispatch } from 'react-redux'
+import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 
 function CheckoutPage({ className }) {
   const cartItems = useSelector((state) => state.cart.cartItems)
@@ -27,7 +28,9 @@ function CheckoutPage({ className }) {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((item) => item.name)}
+      {cartItems.map((item) => (
+        <CheckoutItem key={item.id} cartItem={item} />
+      ))}
       <div className='total'>
         <span>Total: ${cartTotal}</span>
       </div>
