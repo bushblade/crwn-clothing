@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/macro'
 
-const CustomButton = styled.button`
+export const ButtonStyles = css`
   min-width: 165px;
   width: auto;
   height: 50px;
@@ -23,6 +23,10 @@ const CustomButton = styled.button`
     color: black;
     border: 1px solid black;
   }
+`
+
+const CustomButton = styled.button`
+  ${ButtonStyles}
   ${(props) =>
     props.isGoogleSignIn
       ? css`

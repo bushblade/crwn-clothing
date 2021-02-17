@@ -2,8 +2,13 @@ import React, { useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/macro'
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
-import CustomButton from '../custom-button/custom-button.component'
 import CartItem from '../cart-item.component'
+import { Link } from 'react-router-dom'
+import { ButtonStyles } from '../custom-button/custom-button.component'
+
+const StyledLink = styled(Link)`
+  ${ButtonStyles}
+`
 
 function CartDropdown({ className }) {
   const dropDownRef = useRef(null)
@@ -18,7 +23,7 @@ function CartDropdown({ className }) {
       className={className}
       ref={dropDownRef}
       tabIndex='0'
-      onBlur={() => {
+      onBlur={(e) => {
         dispatch(toggleCartHidden())
       }}
     >
@@ -29,7 +34,16 @@ function CartDropdown({ className }) {
           <span className='empty-message'>No items in the cart</span>
         )}
       </div>
-      <CustomButton>GO TO CHECKOUT</CustomButton>
+      <StyledLink
+        to='/checkout'
+        onMouseDown={(e) => {
+          // prevent default triggering blur
+          e.preventDefault()
+        }}
+        onClick={() => dispatch(toggleCartHidden())}
+      >
+        GO TO CHECKOUT
+      </StyledLink>
     </div>
   )
 }
