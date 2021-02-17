@@ -1,7 +1,7 @@
 import types from '../types'
 import { addItemToCart } from './cart.utils'
 
-const { TOGGLE_CART_HIDDEN, ADD_ITEM } = types
+const { TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART } = types
 
 const initialState = {
   hidden: true,
@@ -16,6 +16,11 @@ function cartReducer(state = initialState, action) {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
+      }
+    case CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       }
     default:
       return state

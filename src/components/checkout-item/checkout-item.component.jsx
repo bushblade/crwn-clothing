@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import { useDispatch } from 'react-redux'
+import { clearItemFromCart } from '../../redux/cart/cart.actions'
 
 function CheckoutItem({
   className,
-  cartItem: { imageUrl, name, quantity, price },
+  cartItem: { imageUrl, name, quantity, price, id },
 }) {
+  const dispatch = useDispatch()
   return (
     <div className={className}>
       <div className='image-container'>
@@ -13,7 +16,12 @@ function CheckoutItem({
       <span className='name'>{name}</span>
       <span className='quantity'>{quantity}</span>
       <span className='price'>{price}</span>
-      <button className='remove-button'>&#10005;</button>
+      <button
+        className='remove-button'
+        onClick={() => dispatch(clearItemFromCart(id))}
+      >
+        &#10005;
+      </button>
     </div>
   )
 }
