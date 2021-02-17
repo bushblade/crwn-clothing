@@ -49,8 +49,10 @@ export default styled(CheckoutPage)`
   .checkout-header {
     width: 100%;
     padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(5, 1fr);
     border-bottom: 1px solid darkgrey;
 
     .header-block {

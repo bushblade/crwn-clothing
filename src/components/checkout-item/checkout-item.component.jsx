@@ -20,7 +20,10 @@ function CheckoutItem({
 
 export default styled(CheckoutItem)`
   width: 100%;
-  display: flex;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(5, 1fr);
   min-height: 100px;
   border-bottom: 1px solid darkgrey;
   padding: 15px 0;
@@ -28,9 +31,6 @@ export default styled(CheckoutItem)`
   align-items: center;
 
   .image-container {
-    width: 23%;
-    padding-right: 15px;
-
     img {
       width: 100%;
       height: 100%;
@@ -39,15 +39,10 @@ export default styled(CheckoutItem)`
   .name,
   .quantity,
   .price {
-    width: 23%;
-  }
-
-  .quantity {
-    padding-left: 20px;
+    text-align: center;
   }
 
   .remove-button {
-    margin-left: 12px;
     padding: 0;
     cursor: pointer;
     background: none;
