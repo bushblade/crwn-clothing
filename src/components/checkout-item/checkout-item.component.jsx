@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { useDispatch } from 'react-redux'
-import { clearItemFromCart } from '../../redux/cart/cart.actions'
+import {
+  addItem,
+  clearItemFromCart,
+  removeItem,
+} from '../../redux/cart/cart.actions'
 
-function CheckoutItem({
-  className,
-  cartItem: { imageUrl, name, quantity, price, id },
-}) {
+function CheckoutItem({ className, cartItem }) {
+  const { imageUrl, name, quantity, price, id } = cartItem
   const dispatch = useDispatch()
   return (
     <div className={className}>
@@ -14,7 +16,15 @@ function CheckoutItem({
         <img src={imageUrl} alt={name} />
       </div>
       <span className='name'>{name}</span>
-      <span className='quantity'>{quantity}</span>
+      <div className='quantity'>
+        <button className='arrow' onClick={() => dispatch(removeItem(id))}>
+          &#10094;
+        </button>
+        <span className='value'>{quantity}</span>
+        <button className='arrow' onClick={() => dispatch(addItem(cartItem))}>
+          &#10095;
+        </button>
+      </div>
       <span className='price'>{price}</span>
       <button
         className='remove-button'
@@ -50,7 +60,8 @@ export default styled(CheckoutItem)`
     text-align: center;
   }
 
-  .remove-button {
+  .remove-button,
+  .arrow {
     padding: 0;
     cursor: pointer;
     background: none;

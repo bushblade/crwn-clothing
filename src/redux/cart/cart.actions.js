@@ -1,5 +1,10 @@
 import types from '../types'
-const { TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART } = types
+const {
+  TOGGLE_CART_HIDDEN,
+  ADD_ITEM,
+  CLEAR_ITEM_FROM_CART,
+  REMOVE_ITEM,
+} = types
 
 export function toggleCartHidden() {
   return {
@@ -17,6 +22,13 @@ export function addItem(item) {
 export function clearItemFromCart(id) {
   return {
     type: CLEAR_ITEM_FROM_CART,
+    payload: id,
+  }
+}
+
+export function removeItem(id) {
+  return {
+    type: REMOVE_ITEM,
     payload: id,
   }
 }
