@@ -62,7 +62,7 @@ export default styled(CheckoutItem)`
 
   .remove-button,
   .arrow {
-    padding: 0;
+    padding: 4px;
     cursor: pointer;
     background: none;
     display: inline-block;
