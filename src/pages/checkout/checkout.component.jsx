@@ -54,15 +54,6 @@ export default styled(CheckoutPage)`
     justify-items: center;
     grid-template-columns: repeat(5, 1fr);
     border-bottom: 1px solid darkgrey;
-
-    .header-block {
-      text-transform: capitalize;
-      width: 23%;
-
-      &:last-child {
-        width: 8%;
-      }
-    }
   }
 
   .total {
