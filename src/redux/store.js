@@ -12,26 +12,19 @@ const initialState = {
 
 const store = createStore(rootReducer, initialState, composeWithDevTools())
 
-let currentState = store.getState()
+let currentCartItems = store.getState().cart.cartItems
 
 // subscribe to the store to watch for changes in the cartItems
 store.subscribe(() => {
-  console.log('subscription running')
   // keep track of the previous and current state to compare changes
-  let previousState = currentState
-  currentState = store.getState()
+  let previousCartItems = currentCartItems
+  currentCartItems = store.getState().cart.cartItems
 
-  // store in local storage whenever cartItems changes
-  const cartsMatch = previousState.cart.cartItems.every(
-    (item, index) => item === currentState.cart.cartItems[index]
-  )
-  console.log('carts match', cartsMatch)
+  // check previous array of carts is new array or same array
+  const cartsMatch = previousCartItems === currentCartItems
   if (!cartsMatch) {
-    console.log('cart items changed')
-    localStorage.setItem(
-      'cartItems',
-      JSON.stringify(currentState.cart.cartItems)
-    )
+    // if the cart items changed, store in LS
+    localStorage.setItem('cartItems', JSON.stringify(currentCartItems))
   }
 })
 
